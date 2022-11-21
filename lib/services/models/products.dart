@@ -1,14 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 part 'products.freezed.dart';
 part 'products.g.dart';
 
 @freezed
 abstract class Products with _$Products {
   const factory Products({
-    required List<ProductsData> data,
-    required int count,
-    required String currency,
+    List<ProductsData>? data,
+    int? count,
+    String? currency,
   }) = _Products;
   const Products._();
 
@@ -18,18 +17,18 @@ abstract class Products with _$Products {
 
 @freezed
 abstract class ProductsData with _$ProductsData {
-  const factory ProductsData({
-    required int id,
-    required String name,
-    required String deliveryNotes,
-    required String slug,
-    required double price,
-    required String mediaUrl,
-    required int variationId,
-    required Translations translations,
-    required bool wishlist,
-    required bool canBuy,
-  }) = _ProductsData;
+  const factory ProductsData(
+    int? id,
+    String? name,
+    String? deliveryNotes,
+    String? slug,
+    double? price,
+    String? mediaUrl,
+    int? variationId,
+    Translations? translations,
+    bool? wishlist,
+    bool? canBuy,
+  ) = _ProductsData;
   const ProductsData._();
 
   factory ProductsData.fromJson(Map<String, dynamic> json) =>
@@ -38,9 +37,9 @@ abstract class ProductsData with _$ProductsData {
 
 @freezed
 abstract class Translations with _$Translations {
-  const factory Translations({
-    required Arabic arabic,
-  }) = _Translations;
+  const factory Translations(
+    Arabic? arabic,
+  ) = _Translations;
   const Translations._();
 
   factory Translations.fromJson(Map<String, dynamic> json) =>

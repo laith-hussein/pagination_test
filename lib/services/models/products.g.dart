@@ -7,11 +7,11 @@ part of 'products.dart';
 // **************************************************************************
 
 _$_Products _$$_ProductsFromJson(Map<String, dynamic> json) => _$_Products(
-      data: (json['data'] as List<dynamic>)
-          .map((e) => ProductsData.fromJson(e as Map<String, dynamic>))
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => ProductsData.fromJson(e as Map<String, dynamic>))
           .toList(),
-      count: json['count'] as int,
-      currency: json['currency'] as String,
+      count: json['count'] as int?,
+      currency: json['currency'] as String?,
     );
 
 Map<String, dynamic> _$$_ProductsToJson(_$_Products instance) =>
@@ -23,17 +23,18 @@ Map<String, dynamic> _$$_ProductsToJson(_$_Products instance) =>
 
 _$_ProductsData _$$_ProductsDataFromJson(Map<String, dynamic> json) =>
     _$_ProductsData(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      deliveryNotes: json['deliveryNotes'] as String,
-      slug: json['slug'] as String,
-      price: (json['price'] as num).toDouble(),
-      mediaUrl: json['mediaUrl'] as String,
-      variationId: json['variationId'] as int,
-      translations:
-          Translations.fromJson(json['translations'] as Map<String, dynamic>),
-      wishlist: json['wishlist'] as bool,
-      canBuy: json['canBuy'] as bool,
+      json['id'] as int?,
+      json['name'] as String?,
+      json['deliveryNotes'] as String?,
+      json['slug'] as String?,
+      (json['price'] as num?)?.toDouble(),
+      json['mediaUrl'] as String?,
+      json['variationId'] as int?,
+      json['translations'] == null
+          ? null
+          : Translations.fromJson(json['translations'] as Map<String, dynamic>),
+      json['wishlist'] as bool?,
+      json['canBuy'] as bool?,
     );
 
 Map<String, dynamic> _$$_ProductsDataToJson(_$_ProductsData instance) =>
@@ -52,7 +53,9 @@ Map<String, dynamic> _$$_ProductsDataToJson(_$_ProductsData instance) =>
 
 _$_Translations _$$_TranslationsFromJson(Map<String, dynamic> json) =>
     _$_Translations(
-      arabic: Arabic.fromJson(json['arabic'] as Map<String, dynamic>),
+      json['arabic'] == null
+          ? null
+          : Arabic.fromJson(json['arabic'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_TranslationsToJson(_$_Translations instance) =>
