@@ -117,7 +117,7 @@ class __$$_ProductsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Products extends _Products {
-  const _$_Products({final List<ProductsData>? data, this.count, this.currency})
+  _$_Products({final List<ProductsData>? data, this.count, this.currency})
       : _data = data,
         super._();
 
@@ -174,11 +174,11 @@ class _$_Products extends _Products {
 }
 
 abstract class _Products extends Products {
-  const factory _Products(
+  factory _Products(
       {final List<ProductsData>? data,
       final int? count,
       final String? currency}) = _$_Products;
-  const _Products._() : super._();
+  _Products._() : super._();
 
   factory _Products.fromJson(Map<String, dynamic> json) = _$_Products.fromJson;
 
@@ -202,8 +202,8 @@ ProductsData _$ProductsDataFromJson(Map<String, dynamic> json) {
 mixin _$ProductsData {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  String? get deliveryNotes => throw _privateConstructorUsedError;
   String? get slug => throw _privateConstructorUsedError;
+  String? get deliveryNotes => throw _privateConstructorUsedError;
   double? get price => throw _privateConstructorUsedError;
   String? get mediaUrl => throw _privateConstructorUsedError;
   int? get variationId => throw _privateConstructorUsedError;
@@ -226,8 +226,8 @@ abstract class $ProductsDataCopyWith<$Res> {
   $Res call(
       {int? id,
       String? name,
-      String? deliveryNotes,
       String? slug,
+      String? deliveryNotes,
       double? price,
       String? mediaUrl,
       int? variationId,
@@ -253,8 +253,8 @@ class _$ProductsDataCopyWithImpl<$Res, $Val extends ProductsData>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? deliveryNotes = freezed,
     Object? slug = freezed,
+    Object? deliveryNotes = freezed,
     Object? price = freezed,
     Object? mediaUrl = freezed,
     Object? variationId = freezed,
@@ -271,13 +271,13 @@ class _$ProductsDataCopyWithImpl<$Res, $Val extends ProductsData>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      deliveryNotes: freezed == deliveryNotes
-          ? _value.deliveryNotes
-          : deliveryNotes // ignore: cast_nullable_to_non_nullable
-              as String?,
       slug: freezed == slug
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deliveryNotes: freezed == deliveryNotes
+          ? _value.deliveryNotes
+          : deliveryNotes // ignore: cast_nullable_to_non_nullable
               as String?,
       price: freezed == price
           ? _value.price
@@ -330,8 +330,8 @@ abstract class _$$_ProductsDataCopyWith<$Res>
   $Res call(
       {int? id,
       String? name,
-      String? deliveryNotes,
       String? slug,
+      String? deliveryNotes,
       double? price,
       String? mediaUrl,
       int? variationId,
@@ -356,8 +356,8 @@ class __$$_ProductsDataCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? deliveryNotes = freezed,
     Object? slug = freezed,
+    Object? deliveryNotes = freezed,
     Object? price = freezed,
     Object? mediaUrl = freezed,
     Object? variationId = freezed,
@@ -374,13 +374,13 @@ class __$$_ProductsDataCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      freezed == deliveryNotes
-          ? _value.deliveryNotes
-          : deliveryNotes // ignore: cast_nullable_to_non_nullable
-              as String?,
       freezed == slug
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
+              as String?,
+      freezed == deliveryNotes
+          ? _value.deliveryNotes
+          : deliveryNotes // ignore: cast_nullable_to_non_nullable
               as String?,
       freezed == price
           ? _value.price
@@ -413,17 +413,17 @@ class __$$_ProductsDataCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ProductsData extends _ProductsData {
-  const _$_ProductsData(
-      this.id,
+  _$_ProductsData(
+      [this.id,
       this.name,
-      this.deliveryNotes,
       this.slug,
+      this.deliveryNotes,
       this.price,
       this.mediaUrl,
       this.variationId,
       this.translations,
       this.wishlist,
-      this.canBuy)
+      this.canBuy])
       : super._();
 
   factory _$_ProductsData.fromJson(Map<String, dynamic> json) =>
@@ -434,9 +434,9 @@ class _$_ProductsData extends _ProductsData {
   @override
   final String? name;
   @override
-  final String? deliveryNotes;
-  @override
   final String? slug;
+  @override
+  final String? deliveryNotes;
   @override
   final double? price;
   @override
@@ -452,7 +452,7 @@ class _$_ProductsData extends _ProductsData {
 
   @override
   String toString() {
-    return 'ProductsData(id: $id, name: $name, deliveryNotes: $deliveryNotes, slug: $slug, price: $price, mediaUrl: $mediaUrl, variationId: $variationId, translations: $translations, wishlist: $wishlist, canBuy: $canBuy)';
+    return 'ProductsData(id: $id, name: $name, slug: $slug, deliveryNotes: $deliveryNotes, price: $price, mediaUrl: $mediaUrl, variationId: $variationId, translations: $translations, wishlist: $wishlist, canBuy: $canBuy)';
   }
 
   @override
@@ -462,9 +462,9 @@ class _$_ProductsData extends _ProductsData {
             other is _$_ProductsData &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.deliveryNotes, deliveryNotes) ||
                 other.deliveryNotes == deliveryNotes) &&
-            (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.mediaUrl, mediaUrl) ||
                 other.mediaUrl == mediaUrl) &&
@@ -479,7 +479,7 @@ class _$_ProductsData extends _ProductsData {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, deliveryNotes, slug,
+  int get hashCode => Object.hash(runtimeType, id, name, slug, deliveryNotes,
       price, mediaUrl, variationId, translations, wishlist, canBuy);
 
   @JsonKey(ignore: true)
@@ -497,18 +497,18 @@ class _$_ProductsData extends _ProductsData {
 }
 
 abstract class _ProductsData extends ProductsData {
-  const factory _ProductsData(
-      final int? id,
+  factory _ProductsData(
+      [final int? id,
       final String? name,
-      final String? deliveryNotes,
       final String? slug,
+      final String? deliveryNotes,
       final double? price,
       final String? mediaUrl,
       final int? variationId,
       final Translations? translations,
       final bool? wishlist,
-      final bool? canBuy) = _$_ProductsData;
-  const _ProductsData._() : super._();
+      final bool? canBuy]) = _$_ProductsData;
+  _ProductsData._() : super._();
 
   factory _ProductsData.fromJson(Map<String, dynamic> json) =
       _$_ProductsData.fromJson;
@@ -518,9 +518,9 @@ abstract class _ProductsData extends ProductsData {
   @override
   String? get name;
   @override
-  String? get deliveryNotes;
-  @override
   String? get slug;
+  @override
+  String? get deliveryNotes;
   @override
   double? get price;
   @override

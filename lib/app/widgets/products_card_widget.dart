@@ -1,78 +1,112 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:pagination_test/app/helper/style.dart';
+import 'package:pagination_test/app/router/auto_route.gr.dart';
 
 class ProductCard extends HookWidget {
 //  the other way pass the object as its and use it f
   final int id;
   final String name;
   final String deliveryNotes;
-  final String slug;
   final double price;
   final String mediaUrl;
-  final int variationId;
-  final String translations;
-  final bool wishlist;
-  final bool canBuy;
   final String currency;
+  final String slug;
 
   const ProductCard({
     super.key,
     required this.id,
     required this.name,
     required this.deliveryNotes,
-    required this.slug,
     required this.price,
     required this.mediaUrl,
-    required this.variationId,
-    required this.translations,
-    required this.wishlist,
-    required this.canBuy,
     required this.currency,
+    required this.slug,
   });
 
   @override
   Widget build(BuildContext context) {
-    var expanded = useState(false);
+    var isFavorite = useState(false);
 
-    return Card(
-      margin: const EdgeInsets.all(10),
-      child: Column(
-        children: [
-          ListTile(
-            title: Text(name),
-            subtitle: Text(
-              (price.toString()),
-            ),
-            trailing: IconButton(
-              icon:
-                  Icon(expanded.value ? Icons.expand_less : Icons.expand_more),
-              onPressed: () {
-                expanded.value = !expanded.value;
-              },
-            ),
-          ),
-          if (expanded.value)
-            Column(
-              children: [
-                const Divider(),
-                SizedBox(
-                  height: 200,
-                  child: ListView(
-                    children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(mediaUrl),
+    return GridTile(
+      child: GestureDetector(
+        onTap: () {
+          context.router.push(DetailesRoute(
+            id: id,
+            slug: slug,
+            price: price,
+            name: name,
+            currency: currency,
+        
+          ));
+        },
+        child: Card(
+            elevation: 4,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        Align(
+                            alignment: Alignment.topRight,
+                            child: IconButton(
+                                onPressed: () {
+                                  isFavorite.value = !isFavorite.value;
+                                },
+                                icon: Icon(isFavorite.value
+                                    ? Icons.favorite
+                                    : Icons.favorite_outline))),
+                        Align(
+                          alignment: Alignment.center,
+                          child: CachedNetworkImage(
+                            fit: BoxFit.cover,
+                            imageUrl: mediaUrl,
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) =>
+                                    SpinKitCircle(
+                              size: 50,
+                              itemBuilder: (BuildContext context, int index) {
+                                return const DecoratedBox(
+                                  decoration: BoxDecoration(
+                                      color: kZaltimoColorGold,
+                                      shape: BoxShape.circle),
+                                );
+                              },
+                            ),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ),
                         ),
-                        title: Text('$price  -$currency'),
-                        subtitle: Text('$price'),
-                      ),
-                      Text(deliveryNotes),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            )
-        ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
+                          style: kProductNameOverview,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: Text(
+                      '$price$currency',
+                      style: kProductPriceDetales,
+                    ),
+                  )
+                ])),
       ),
     );
   }

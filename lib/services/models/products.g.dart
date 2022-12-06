@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: non_constant_identifier_names
+
 part of 'products.dart';
 
 // **************************************************************************
@@ -25,8 +27,8 @@ _$_ProductsData _$$_ProductsDataFromJson(Map<String, dynamic> json) =>
     _$_ProductsData(
       json['id'] as int?,
       json['name'] as String?,
-      json['deliveryNotes'] as String?,
       json['slug'] as String?,
+      json['deliveryNotes'] as String?,
       (json['price'] as num?)?.toDouble(),
       json['mediaUrl'] as String?,
       json['variationId'] as int?,
@@ -41,8 +43,8 @@ Map<String, dynamic> _$$_ProductsDataToJson(_$_ProductsData instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'deliveryNotes': instance.deliveryNotes,
       'slug': instance.slug,
+      'deliveryNotes': instance.deliveryNotes,
       'price': instance.price,
       'mediaUrl': instance.mediaUrl,
       'variationId': instance.variationId,

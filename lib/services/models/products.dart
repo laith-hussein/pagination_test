@@ -4,7 +4,7 @@ part 'products.g.dart';
 
 @freezed
 abstract class Products with _$Products {
-  const factory Products({
+  factory Products({
     List<ProductsData>? data,
     int? count,
     String? currency,
@@ -17,18 +17,18 @@ abstract class Products with _$Products {
 
 @freezed
 abstract class ProductsData with _$ProductsData {
-  const factory ProductsData(
+  factory ProductsData([
     int? id,
     String? name,
-    String? deliveryNotes,
     String? slug,
+    String? deliveryNotes,
     double? price,
     String? mediaUrl,
     int? variationId,
     Translations? translations,
     bool? wishlist,
     bool? canBuy,
-  ) = _ProductsData;
+  ]) = _ProductsData;
   const ProductsData._();
 
   factory ProductsData.fromJson(Map<String, dynamic> json) =>
