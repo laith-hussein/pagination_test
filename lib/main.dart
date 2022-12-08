@@ -30,8 +30,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    void main() => runApp(const MyApp());
-
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,

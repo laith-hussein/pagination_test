@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pagination_test/app/helper/style.dart';
 import 'package:pagination_test/app/screens/cart_screen/widgets/increase_decrease_button.dart';
@@ -116,7 +117,7 @@ class CartScreen extends HookConsumerWidget {
                 ],
               ),
             ),
-      body: cartProvider.databox.length == 0 
+      body: cartProvider.databox.length == 0
           ? const Center(child: Text('Empty Cart'))
           : ListView.builder(
               shrinkWrap: true,

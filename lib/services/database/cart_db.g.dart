@@ -24,13 +24,14 @@ class CartData extends TypeAdapter<CartDb> {
       quantity: fields[4] as int?,
       currency: fields[5] as String?,
       media: fields[6] as String?,
+      isFavorite: fields[7] as bool?,
     );
   }
 
   @override
   void write(BinaryWriter writer, CartDb obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -44,7 +45,9 @@ class CartData extends TypeAdapter<CartDb> {
       ..writeByte(5)
       ..write(obj.currency)
       ..writeByte(6)
-      ..write(obj.media);
+      ..write(obj.media)
+      ..writeByte(7)
+      ..write(obj.isFavorite);
   }
 
   @override
@@ -70,6 +73,7 @@ _$_CartDb _$$_CartDbFromJson(Map<String, dynamic> json) => _$_CartDb(
       quantity: json['quantity'] as int?,
       currency: json['currency'] as String?,
       media: json['media'] as String?,
+      isFavorite: json['isFavorite'] as bool?,
     );
 
 Map<String, dynamic> _$$_CartDbToJson(_$_CartDb instance) => <String, dynamic>{
@@ -80,4 +84,5 @@ Map<String, dynamic> _$$_CartDbToJson(_$_CartDb instance) => <String, dynamic>{
       'quantity': instance.quantity,
       'currency': instance.currency,
       'media': instance.media,
+      'isFavorite': instance.isFavorite,
     };

@@ -34,6 +34,8 @@ mixin _$CartDb {
   String? get currency => throw _privateConstructorUsedError;
   @HiveField(6)
   String? get media => throw _privateConstructorUsedError;
+  @HiveField(7)
+  bool? get isFavorite => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +54,8 @@ abstract class $CartDbCopyWith<$Res> {
       @HiveField(3) String? size,
       @HiveField(4) int? quantity,
       @HiveField(5) String? currency,
-      @HiveField(6) String? media});
+      @HiveField(6) String? media,
+      @HiveField(7) bool? isFavorite});
 }
 
 /// @nodoc
@@ -75,6 +78,7 @@ class _$CartDbCopyWithImpl<$Res, $Val extends CartDb>
     Object? quantity = freezed,
     Object? currency = freezed,
     Object? media = freezed,
+    Object? isFavorite = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -105,6 +109,10 @@ class _$CartDbCopyWithImpl<$Res, $Val extends CartDb>
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
               as String?,
+      isFavorite: freezed == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -122,7 +130,8 @@ abstract class _$$_CartDbCopyWith<$Res> implements $CartDbCopyWith<$Res> {
       @HiveField(3) String? size,
       @HiveField(4) int? quantity,
       @HiveField(5) String? currency,
-      @HiveField(6) String? media});
+      @HiveField(6) String? media,
+      @HiveField(7) bool? isFavorite});
 }
 
 /// @nodoc
@@ -142,6 +151,7 @@ class __$$_CartDbCopyWithImpl<$Res>
     Object? quantity = freezed,
     Object? currency = freezed,
     Object? media = freezed,
+    Object? isFavorite = freezed,
   }) {
     return _then(_$_CartDb(
       id: freezed == id
@@ -172,6 +182,10 @@ class __$$_CartDbCopyWithImpl<$Res>
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
               as String?,
+      isFavorite: freezed == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -186,7 +200,8 @@ class _$_CartDb extends _CartDb {
       @HiveField(3) this.size,
       @HiveField(4) this.quantity,
       @HiveField(5) this.currency,
-      @HiveField(6) this.media})
+      @HiveField(6) this.media,
+      @HiveField(7) this.isFavorite})
       : super._();
 
   factory _$_CartDb.fromJson(Map<String, dynamic> json) =>
@@ -213,10 +228,13 @@ class _$_CartDb extends _CartDb {
   @override
   @HiveField(6)
   final String? media;
+  @override
+  @HiveField(7)
+  final bool? isFavorite;
 
   @override
   String toString() {
-    return 'CartDb(id: $id, name: $name, price: $price, size: $size, quantity: $quantity, currency: $currency, media: $media)';
+    return 'CartDb(id: $id, name: $name, price: $price, size: $size, quantity: $quantity, currency: $currency, media: $media, isFavorite: $isFavorite)';
   }
 
   @override
@@ -232,13 +250,15 @@ class _$_CartDb extends _CartDb {
                 other.quantity == quantity) &&
             (identical(other.currency, currency) ||
                 other.currency == currency) &&
-            (identical(other.media, media) || other.media == media));
+            (identical(other.media, media) || other.media == media) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, price, size, quantity, currency, media);
+  int get hashCode => Object.hash(runtimeType, id, name, price, size, quantity,
+      currency, media, isFavorite);
 
   @JsonKey(ignore: true)
   @override
@@ -262,7 +282,8 @@ abstract class _CartDb extends CartDb {
       @HiveField(3) final String? size,
       @HiveField(4) final int? quantity,
       @HiveField(5) final String? currency,
-      @HiveField(6) final String? media}) = _$_CartDb;
+      @HiveField(6) final String? media,
+      @HiveField(7) final bool? isFavorite}) = _$_CartDb;
   _CartDb._() : super._();
 
   factory _CartDb.fromJson(Map<String, dynamic> json) = _$_CartDb.fromJson;
@@ -288,6 +309,9 @@ abstract class _CartDb extends CartDb {
   @override
   @HiveField(6)
   String? get media;
+  @override
+  @HiveField(7)
+  bool? get isFavorite;
   @override
   @JsonKey(ignore: true)
   _$$_CartDbCopyWith<_$_CartDb> get copyWith =>

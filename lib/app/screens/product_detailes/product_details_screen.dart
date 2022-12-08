@@ -28,11 +28,15 @@ class DetailesScreen extends HookConsumerWidget {
     final qtyNumber = useState(1);
     final sizedList = ['250g', '500g', '1kg'];
     final giftAmount = ['25JD', '50JD', '75JD'];
+    bool favorite = false;
+
+    final cartProvider = ref.watch(cartApiProvider);
+    final isFavorite = useState(favorite);
+
 
     final singleProduct =
         // need to send the data by the arrangment on the productsData class
         ref.watch((singleProductProvider(ProductsData(id, name, slug))));
-    final cartProvider = ref.watch(cartApiProvider);
     return Material(
         // need the data in the app bar => render the future proivder here
         child: singleProduct.when(
@@ -80,17 +84,22 @@ class DetailesScreen extends HookConsumerWidget {
                         ),
                         // const SizedBox(width: 8),
                         RawMaterialButton(
-                          onPressed: () {},
-                          elevation: 2.0,
-                          fillColor: Colors.white,
-                          shape: const CircleBorder(),
-                          // padding: const EdgeInsets.all(8),
+                            onPressed: () {
+                              isFavorite.value = !(isFavorite.value);
 
-                          child: const Icon(
-                            Icons.favorite_border,
-                            color: Colors.red,
-                          ),
-                        )
+                              favorite =
+                                  cartProvider.addToFave(id, isFavorite.value);
+                            },
+                            elevation: 2.0,
+                            fillColor: Colors.white,
+                            shape: const CircleBorder(),
+                            // padding: const EdgeInsets.all(8),
+                            child: Icon(
+                              isFavorite.value
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: Colors.red,
+                            ))
                       ],
                     ),
                   ),
@@ -156,17 +165,8 @@ class DetailesScreen extends HookConsumerWidget {
                             list: giftAmount,
                             selectedIndex: selectedIndexAmount),
                         IncreaseDecreaseButton(qtyNumber),
-                        if ((data.productComponents?.length ?? 0) > 0)
-                          const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 16),
-                              child: Text(
-                                'Whats Inside?',
-                                style: kProductNameOverview,
-                              )),
-                        const SizedBox(height: 8),
-                        WhatInsideSlider(
-                          product: data,
-                        )
+                        if ((data.productComponents?.isNotEmpty == true))
+                          WhatInsideSlider(product: data)
                       ],
                     ),
                   ));

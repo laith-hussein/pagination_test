@@ -9,7 +9,6 @@ final cartApiProvider = ChangeNotifierProvider<CartApiNotifier>(
 );
 
 class CartApiNotifier extends ChangeNotifier {
-
   final databox = Hive.box<CartDb>('cartDb');
 
   int get boxLength => databox.length;
@@ -24,6 +23,42 @@ class CartApiNotifier extends ChangeNotifier {
     return total;
   }
 
+  bool addToFave(int id, bool isFavorite) {
+    debugPrint('isFavorite$isFavorite');
+    debugPrint('id$id');
+    CartDb? existedCartDb;
+
+    try {
+      existedCartDb = databox.values.firstWhere((element) => element.id == id);
+    } catch (e) {
+      debugPrint('$e');
+    }
+    if (existedCartDb != null) {
+      databox.put(
+          existedCartDb.key,
+          CartDb(
+              id: existedCartDb.id,
+              name: existedCartDb.name,
+              size: existedCartDb.size,
+              media: existedCartDb.media,
+              currency: existedCartDb.currency,
+              quantity: existedCartDb.quantity,
+              price: existedCartDb.price,
+              isFavorite: isFavorite));
+    }
+
+    debugPrint('${databox.values}');
+
+    // databox.put(
+    //     key,
+    //     cart.copy(
+    //       isFavorite: isFavorite,
+    //     ));
+    notifyListeners();
+    return databox.get(existedCartDb?.key)?.isFavorite??false;
+  }
+
+
   void changeQtyFromCart(int qty, dynamic key, index) {
     debugPrint('$qty');
     debugPrint('$key');
@@ -33,20 +68,14 @@ class CartApiNotifier extends ChangeNotifier {
 
     databox.put(
         key,
-        CartDb(
-          id: cart.id,
-          name: cart.name,
-          size: cart.size,
-          media: cart.media,
-          currency: cart.currency,
-          quantity: qty,
-          price: cart.price,
+        cart.copy(
+          qty: qty,
         ));
     notifyListeners();
   }
 
 // check if the item exist   in the cart  by the id  if its not ,  add new one ,
-// if its exist check on the size item if its the same size update the quantity if its not add new one with same idea with different size 
+// if its exist check on the size item if its the same size update the quantity if its not add new one with same idea with different size
   void addItemCart(
     CartDb cartDb,
   ) {
@@ -87,7 +116,7 @@ class CartApiNotifier extends ChangeNotifier {
     }
   }
 
-// remove the item by index 
+// remove the item by index
   void removeCart(int index) {
     databox.deleteAt(index);
     notifyListeners();
